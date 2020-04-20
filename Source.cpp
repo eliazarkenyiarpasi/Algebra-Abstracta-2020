@@ -4,68 +4,58 @@
 
 using namespace std;
 
-class Cesar {
-private:
-	int clave;
+class Vigenere {
 public:
-	Cesar() {
-		clave = 3;
-	}
-	
-	string alfabeto = {"abcdefghijklmnopqrstuvwxyz"};
 	string cif;
 	string descif;
-	int tam_alf = alfabeto.length();
+	string alf = {"abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
+	int tam_alf = alf.length();
+	string clave;
+	int tam_clave;
+	int num_al;
+	int pos_m;
+	int pos_c;
+	int pos_f;
 
-	string cifrado(string mensaje) {
-
-		int tam = mensaje.length();
-		for (int i = 0; i < tam; i++) {
-			int pos = alfabeto.find(mensaje[i]);
-			if (pos > 23) {
-				cif += alfabeto[pos + clave - tam_alf];
-			}
-			else {
-				cif += alfabeto[pos + clave];
-			}
+	Vigenere() {/*
+		int tam_clave = 5;
+		num_al=
+		for (int i = 0; i < tam_clave; i++) {
+			clave += alf[num_al];
 		}
+
+		//clave = "abcde";*/
+	}
+	string cifrado(string msj) {
+		int tam = msj.length();
+		
+		for (int i = 0; i < tam; i++) {
+
+		}
+
+		for (int i = 0; i < tam; i++) {
+			pos_m = alf.find(msj[i]);
+			pos_c = alf.find(clave[i]);
+			pos_f = (pos_m + pos_c) % tam_alf;
+			cif += alf[pos_f];
+		}
+
 		return cif;
 	}
-	string descifrado(string mensaje_cifrado) {
+	string descif(string msj_cif) {
 
-		int tam = mensaje_cifrado.length();
-		for (int i = 0; i < tam; i++) {
-			int pos = alfabeto.find(mensaje_cifrado[i]);
-			if (pos > 23) {
-				descif += alfabeto[pos + tam_alf - clave];
-			}
-			else {
-				descif += alfabeto[pos - clave];
-			}
-		}
 		return descif;
-
 	}
-	
-
 };
 
 
 
 int main() {
 	
-	Cesar emisor;
-	Cesar receptor;
-
 	string mensaje;
 	cin >> mensaje;
+	Vigenere emisor;
+	emisor.cifrado(mensaje);
 
-	string mensaje_cifrado = emisor.cifrado(mensaje);
-	cout << "mensaje_cifrado: " << mensaje_cifrado << endl;
-	
-	string mensaje_descifrado = receptor.descifrado(mensaje_cifrado);
-	cout << "mensaje descifrado: " << mensaje_descifrado << endl;
-	
 	return 0;
-
 }
