@@ -28,9 +28,11 @@ public:
 	}
 	string cifrado(string msj) {
 		int tam = msj.length();
-		
-		for (int i = 0; i < tam; i++) {
-
+		cout << "Ingrese la clave: ";
+		cin >> clave;
+		int tam_clave = clave.length();
+		for (int i = 0; i < tam-tam_clave; i++) {
+			clave += clave[i];
 		}
 
 		for (int i = 0; i < tam; i++) {
@@ -43,6 +45,8 @@ public:
 		return cif;
 	}
 	string descif(string msj_cif) {
+
+
 
 		return descif;
 	}
